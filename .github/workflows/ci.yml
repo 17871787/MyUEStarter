@@ -1,0 +1,33 @@
+name: UE5 CI (self-hosted)
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  cook-build:
+    runs-on: [self-hosted, Windows]
+    env:
+      UE_ROOT: C:\Program Files\Epic Games\UE_5.4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Resolve Unreal paths
+        shell: powershell
+        run: |
+          $env:UE_BUILD = Join-Path "$env:UE_ROOT" "Engine\Build\BatchFiles"
+          echo "UE_BUILD=$env:UE_BUILD" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Generate project files
+        shell: powershell
+        run: |
+          & "$env:UE_BUILD\GenerateProjectFiles.bat" -project="$(Get-ChildItem *.uproject)"
+
+      - name: Cook & Package Win64 (Development)
+        shell: powershell
+        run: |
+          $uproject = (Get-ChildItem *.uproject).FullName
+          & "$env:UE_BUILD\RunUAT.bat" BuildCookRun -project="$uproject" -platform=Win64 -clientconfig=Development -cook -build -stage -pak -archive -archivedirectory="$env:USERPROFILE\UnrealBuilds\CI"
