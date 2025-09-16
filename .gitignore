@@ -1,0 +1,29 @@
+# Unreal / Visual Studio
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+.vs/
+*.suo
+*.sln.docstates
+
+# Build/Packaged outputs
+Build/InstalledBuild.xml
+Build/Receipts/
+Saved/Backup*/
+*.VC.db
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Editor autosaves
+*_BuiltData.uasset
+
+# User settings
+*.opensdf
+*.sdf
+*.sln
+*.suo
+*.VC.db
+*.VC.opendb
