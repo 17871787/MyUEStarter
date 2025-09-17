@@ -86,7 +86,9 @@ def main():
         ('M_CowWhite', (0.9, 0.9, 0.85), 0.8, 0.0),     # White cow
         ('M_CowBrown', (0.4, 0.25, 0.15), 0.8, 0.0),    # Brown cow
         ('M_FencePost', (0.3, 0.25, 0.2), 0.9, 0.0),    # Fence post
-        ('M_Water', (0.2, 0.4, 0.6), 0.2, 0.0)          # Water
+        ('M_Water', (0.2, 0.4, 0.6), 0.2, 0.0),         # Water
+        ('M_Gravel_Lane', (0.5, 0.5, 0.5), 0.95, 0.0),  # Neutral gray gravel
+        ('M_Shed_Roof', (0.6, 0.55, 0.5), 0.3, 0.4)     # Rough metal roof
     ]
 
     # Create each material
